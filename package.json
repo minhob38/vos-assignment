@@ -1,0 +1,21 @@
+{
+  "name": "vos-assignment",
+  "version": "1.0.0",
+  "description": "vos-assignment (api server)",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/minhob38/vos-assignment.git"
+  },
+  "author": "kwon, minho",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/minhob38/vos-assignment/issues"
+  },
+  "homepage": "https://github.com/minhob38/vos-assignment#readme",
+  "dependencies": {}
+}
