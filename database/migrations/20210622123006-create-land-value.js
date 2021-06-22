@@ -1,4 +1,3 @@
-"use strict";
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     await queryInterface.createTable("LandValues", {
@@ -6,28 +5,34 @@ module.exports = {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
       },
       pnu: {
-        type: Sequelize.INTEGER
+        allowNull: true,
+        type: Sequelize.INTEGER,
       },
       base_year: {
-        type: Sequelize.DATE
+        allowNull: true,
+        type: Sequelize.DATE,
       },
       base_month: {
-        type: Sequelize.DATE
+        allowNull: true,
+        type: Sequelize.DATE,
       },
       public_price: {
-        type: Sequelize.INTEGER
+        allowNull: true,
+        type: Sequelize.INTEGER,
       },
       created_at: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
       },
       updated_at: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
       }
+    }, {
+      timestamps: false,
     });
   },
   down: async (queryInterface, Sequelize) => {

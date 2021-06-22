@@ -8,7 +8,9 @@
     "start": "nodemon server.js",
     "make-model": "npx sequelize-cli model:generate --name LandValue --attributes pnu:integer,base_year:date,base_month:date,public_price:integer",
     "migrate": "npx sequelize-cli db:migrate",
-    "undo-migrate": "npx sequelize-cli db:migrate:undo"
+    "undo-migrate": "npx sequelize-cli db:migrate:undo:all",
+    "make-seed": "npx sequelize-cli seed:generate --name LandValue",
+    "seed": "npx sequelize-cli db:seed:all"
   },
   "repository": {
     "type": "git",
