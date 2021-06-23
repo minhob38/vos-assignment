@@ -32,12 +32,12 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DATE,
         defaultValue: new Date(),
-      }
+      },
     }, {
       timestamps: false,
     });
   },
   down: async (queryInterface, Sequelize) => {
     await queryInterface.dropTable("LandValues");
-  }
+  },
 };

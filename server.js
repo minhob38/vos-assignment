@@ -1,6 +1,6 @@
 const Koa = require("koa");
 const Router = require("koa-router");
-const logger = require('koa-logger')
+const logger = require("koa-logger");
 require("dotenv").config();
 
 const api = require("./src/api");
@@ -17,4 +17,4 @@ router.use(api.routes());
 app.use(router.routes());
 
 db.sequelize.sync().then((req) => console.log("model is synchronized with db"));
-app.listen(port, ()=> console.log(`server connection: port ${port}`));
+app.listen(port, () => console.log(`server connection: port ${port}`));

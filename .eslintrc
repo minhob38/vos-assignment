@@ -42,6 +42,8 @@
     "no-await-in-loop": "off",
     "import/no-extraneous-dependencies": "off",
     "no-param-reassign": "off",
-    "quote-props": "off"
+    "quote-props": "off",
+    "import/no-dynamic-require": "off",
+    "global-require": "off"
   }
 }

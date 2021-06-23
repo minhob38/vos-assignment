@@ -3,6 +3,6 @@ const landValueCtrl = require("./landValue.controller");
 
 const landValue = new Router();
 
-landValue.get("/seoul", landValueCtrl.getLandValue);
+landValue.get("/land-value", landValueCtrl.getLandValue);
 
 module.exports = landValue;
