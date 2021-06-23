@@ -34,6 +34,7 @@ module.exports = {
         defaultValue: new Date(),
       },
     }, {
+      indexes: [{ unique: false, fields: ["pnu", "base_year", "base_month"] }],
       timestamps: false,
     });
   },
