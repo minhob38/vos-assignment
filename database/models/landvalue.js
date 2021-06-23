@@ -8,27 +8,29 @@ module.exports = (sequelize, DataTypes) => {
     },
     pnu: {
       allowNull: true,
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
     },
     base_year: {
       allowNull: true,
-      type: DataTypes.DATE,
+      type: DataTypes.STRING,
     },
     base_month: {
       allowNull: true,
-      type: DataTypes.DATE,
+      type: DataTypes.STRING,
     },
     public_price: {
       allowNull: true,
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
     },
     created_at: {
       allowNull: false,
       type: DataTypes.DATE,
+      defaultValue: new Date(),
     },
     updated_at: {
       allowNull: false,
       type: DataTypes.DATE,
+      defaultValue: new Date(),
     }
   }, {
     timestamps: false,
