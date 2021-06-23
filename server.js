@@ -16,5 +16,5 @@ app.use(logger());
 router.use(api.routes());
 app.use(router.routes());
 
-db.sequelize.sync().then((req) => console.log("model is synchronized with db"));
+db.sequelize.sync().then(() => console.log("model is synchronized with db"));
 app.listen(port, () => console.log(`server connection: port ${port}`));
