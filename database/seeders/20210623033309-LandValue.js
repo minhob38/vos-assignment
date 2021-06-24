@@ -1,16 +1,11 @@
 const path = require("path");
-const getTablesFromCsv = require("../../src/utils/getTablesFromCsv");
+const createDbFromCsv = require("../../src/utils/createDbFromCsv");
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    const csvPath = path.join(__dirname, "../../assets/test.csv");
-    const tables = await getTablesFromCsv(csvPath);
-
-    await queryInterface.bulkInsert(
-      "LandValues",
-      [...tables],
-      {},
-    );
+    const csvPath = path.join(__dirname, "../../assets/AL_11_D151_20210608.csv");
+    // const csvPath = path.join(__dirname, "../../assets/test.csv");
+    await createDbFromCsv(csvPath);
   },
 
   down: async (queryInterface, Sequelize) => {
