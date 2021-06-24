@@ -13,7 +13,7 @@ const getTablesFromCsv = async (csvPath) => {
         tables.push({
           "pnu": row["고유번호"],
           "base_year": row["기준연도"],
-          "base_month": row["기준월"],
+          "base_month": row["기준월"].length === 2 ? row["기준월"] : `0${row["기준월"]}`,
           "public_price": row["공시지가"],
         });
       })

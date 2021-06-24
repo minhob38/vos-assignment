@@ -1,5 +1,5 @@
 const createError = require("http-errors");
-const { getValuableLands } = require("../../../database/models/controller/landValue.controller")
+const { getValuableLands } = require("../../../database/models/controller/landValue.controller");
 
 const getLandValue = async (ctx, next) => {
   try {
