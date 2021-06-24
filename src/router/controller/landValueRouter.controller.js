@@ -1,5 +1,8 @@
 const createError = require("http-errors");
 const { getValuableLands } = require("../../../database/models/controller/landValue.controller");
+const getIsAreaCode = require("../../utils/getIsAreaCode");
+const getIsYear = require("../../utils/getIsYear");
+const getIsMonth = require("../../utils/getIsMonth");
 
 const getLandValue = async (ctx, next) => {
   try {
@@ -7,14 +10,7 @@ const getLandValue = async (ctx, next) => {
     const year = ctx.query["base-year"];
     const month = ctx.query["base-month"];
 
-    const codeReg = /\d{5}/;
-    const monthReg = /0[1-9]|1[012]/;
-    const yearReg = /^[12]\d{3}/;
-    const isCodeValid = codeReg.test(code) && code.length === 5;
-    const isYearValid = yearReg.test(year) && year.length === 4;
-    const isMonthValid = monthReg.test(month) && month.length === 2;
-
-    if (!isCodeValid || !isYearValid || !isMonthValid) {
+    if (!getIsAreaCode(code) || !getIsYear(year) || !getIsMonth(month)) {
       ctx.throw(400, "Invalid Request");
     }
 
@@ -34,7 +30,6 @@ const getLandValue = async (ctx, next) => {
     ctx.type = "application/json";
     ctx.body = _landValues;
   } catch (err) {
-    console.log(`GET: /api/land-value/query: ${err}`);
     ctx.app.emit("error", createError(err.status, err.message), ctx);
   }
 };
