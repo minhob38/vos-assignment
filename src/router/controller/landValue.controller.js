@@ -10,9 +10,9 @@ const getLandValue = async (ctx, next) => {
     const codeReg = /\d{5}/;
     const monthReg = /0[1-9]|1[012]/;
     const yearReg = /^[12]\d{3}/;
-    const isCodeValid = codeReg.test(code) && code.length < 6;
-    const isYearValid = yearReg.test(year) && year.length < 5;
-    const isMonthValid = monthReg.test(month) && month.length < 3;
+    const isCodeValid = codeReg.test(code) && code.length !== 5;
+    const isYearValid = yearReg.test(year) && year.length !== 4;
+    const isMonthValid = monthReg.test(month) && month.length !== 2;
 
     if (!isCodeValid || !isYearValid || !isMonthValid) {
       ctx.throw(400, "Invalid Request");
