@@ -5,12 +5,21 @@ const { LandValue } = require("../../../database/models");
 const getLandValue = async (ctx, next) => {
   // 요청 숫자 크기가 5가 아니면 에러 발생!
   try {
+    const areaCode = ctx.query["area-code"];
+    const baseYear = ctx.query["base-year"];
+    const baseMonth = ctx.query["base-month"];
+
+    // validation util만들기, 정규식 활용
+    if (areaCode.length > 5) {
+      throw new Error();
+    }
+
     const landValues = await LandValue.findAll({
       attributes: ["pnu", "public_price", "base_year", "base_month"],
       where: {
-        pnu: { [sequelize.Op.startsWith]: "111101" },
-        base_year: "2020",
-        base_month: "1",
+        pnu: { [sequelize.Op.startsWith]: areaCode },
+        base_year: baseYear,
+        base_month: baseMonth,
       },
       limit: 20,
       order: [
