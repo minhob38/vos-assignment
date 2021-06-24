@@ -8,20 +8,24 @@ module.exports = {
         type: Sequelize.INTEGER,
       },
       pnu: {
-        allowNull: true,
-        type: Sequelize.STRING,
+        allowNull: false,
+        type: Sequelize.STRING(19),
+        validate: { is: /\d{19}/ },
       },
       base_year: {
-        allowNull: true,
-        type: Sequelize.STRING,
+        allowNull: false,
+        type: Sequelize.STRING(4),
+        validate: { is: /^[12]\d{3}/ },
       },
       base_month: {
-        allowNull: true,
-        type: Sequelize.STRING,
+        allowNull: false,
+        type: Sequelize.STRING(2),
+        validate: { is: /0[1-9]|1[012]/ },
       },
       public_price: {
-        allowNull: true,
+        allowNull: false,
         type: Sequelize.STRING,
+        validate: { is: /^\d+$/ },
       },
       created_at: {
         allowNull: false,

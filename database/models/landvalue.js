@@ -2,25 +2,29 @@ module.exports = (sequelize, DataTypes) => {
   const LandValue = sequelize.define("LandValue", {
     id: {
       allowNull: false,
-      autoIncrement: true,
-      primaryKey: true,
+      autoIncrement: false,
+      primaryKey: false,
       type: DataTypes.INTEGER,
     },
     pnu: {
-      allowNull: true,
-      type: DataTypes.STRING,
+      allowNull: false,
+      type: DataTypes.STRING(19),
+      validate: { is: /\d{19}/ },
     },
     base_year: {
-      allowNull: true,
-      type: DataTypes.STRING,
+      allowNull: false,
+      type: DataTypes.STRING(4),
+      validate: { is: /^[12]\d{3}/ },
     },
     base_month: {
-      allowNull: true,
-      type: DataTypes.STRING,
+      allowNull: false,
+      type: DataTypes.STRING(2),
+      validate: { is: /0[1-9]|1[012]/ },
     },
     public_price: {
-      allowNull: true,
+      allowNull: false,
       type: DataTypes.STRING,
+      validate: { is: /^\d+$/ },
     },
     created_at: {
       allowNull: false,
