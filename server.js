@@ -4,8 +4,8 @@ const logger = require("koa-logger");
 const http = require("http");
 require("dotenv").config();
 
-const api = require("./src/router/api");
-const db = require("./database/models");
+const apiRouter = require("./src/router/apiRouter");
+const database = require("./database/models");
 
 const app = new Koa();
 const router = new Router();
@@ -15,7 +15,7 @@ const port = process.env.PORT || 3000;
 
 app.use(logger());
 
-router.use(api.routes());
+router.use(apiRouter.routes());
 app.use(router.routes());
 
 app.on("error", (err, ctx) => {
@@ -34,8 +34,8 @@ app.on("error", (err, ctx) => {
 });
 
 (async () => {
-  await db.sequelize.sync();
+  await database.sequelize.sync();
   server.listen(port, () => console.log(`server connection: port ${port}`));
 })();
 
-module.exports = { server, db };
+module.exports = { server, database };

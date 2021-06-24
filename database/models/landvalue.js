@@ -2,8 +2,8 @@ module.exports = (sequelize, DataTypes) => {
   const LandValue = sequelize.define("LandValue", {
     id: {
       allowNull: false,
-      autoIncrement: false,
-      primaryKey: false,
+      autoIncrement: true,
+      primaryKey: true,
       type: DataTypes.INTEGER,
     },
     pnu: {
