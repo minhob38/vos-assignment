@@ -19,18 +19,23 @@ router.use(api.routes());
 app.use(router.routes());
 
 app.on("error", (err, ctx) => {
-  let message = err.message;
-
   ctx.status = err.status || 500;
 
-  if (ctx.status === 500) {
-    message = "Internal Server Error";
-  }
+  const message = ctx.status === 500
+    ? "Internal Server Error"
+    : err.message;
 
-  ctx.body = `${message} / ${ctx.status}`;
+  ctx.type = "application/json";
+
+  ctx.body = {
+    status: ctx.status,
+    error: message,
+  };
 });
 
-db.sequelize.sync().then(() => console.log("model is synchronized with db"));
-server.listen(port, () => console.log(`server connection: port ${port}`));
+(async () => {
+  await db.sequelize.sync();
+  server.listen(port, () => console.log(`server connection: port ${port}`));
+})();
 
 module.exports = { server, db };
