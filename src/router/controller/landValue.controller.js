@@ -7,6 +7,17 @@ const getLandValue = async (ctx, next) => {
     const year = ctx.query["base-year"];
     const month = ctx.query["base-month"];
 
+    const codeReg = /\d{5}/;
+    const monthReg = /0[1-9]|1[012]/;
+    const yearReg = /^[12]\d{3}/;
+    const isCodeValid = codeReg.test(code) && code.length < 6;
+    const isYearValid = yearReg.test(year) && year.length < 5;
+    const isMonthValid = monthReg.test(month) && month.length < 3;
+
+    if (!isCodeValid || !isYearValid || !isMonthValid) {
+      ctx.throw(400, "Invalid Request");
+    }
+
     const landValues = await getValuableLands(code, year, month);
 
     const _landValues = landValues.map((landValue) => {
@@ -24,7 +35,7 @@ const getLandValue = async (ctx, next) => {
     ctx.body = _landValues;
   } catch (err) {
     console.log(`GET: /api/land-value/query: ${err}`);
-    ctx.app.emit("error", createError(500, "Internal Server Error"), ctx);
+    ctx.app.emit("error", createError(err.status, err.message), ctx);
   }
 };
 

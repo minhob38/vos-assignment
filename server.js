@@ -17,8 +17,15 @@ router.use(api.routes());
 app.use(router.routes());
 
 app.on("error", (err, ctx) => {
-  ctx.status = err.status;
-  ctx.body = `${err.message} / ${err.status}`;
+  let message = err.message;
+
+  ctx.status = err.status || 500;
+
+  if (ctx.status === 500) {
+    message = "Internal Server Error";
+  }
+
+  ctx.body = `${message} / ${ctx.status}`;
 });
 
 db.sequelize.sync().then(() => console.log("model is synchronized with db"));
