@@ -1,40 +1,21 @@
-const sequelize = require("sequelize");
 const createError = require("http-errors");
-const { LandValue } = require("../../../database/models");
+const { getValuableLands } = require("../../../database/models/controller/landValue.controller")
 
 const getLandValue = async (ctx, next) => {
-  // 요청 숫자 크기가 5가 아니면 에러 발생!
   try {
-    const areaCode = ctx.query["area-code"];
-    const baseYear = ctx.query["base-year"];
-    const baseMonth = ctx.query["base-month"];
+    const code = ctx.query["area-code"];
+    const year = ctx.query["base-year"];
+    const month = ctx.query["base-month"];
 
-    // validation util만들기, 정규식 활용
-    if (areaCode.length > 5) {
-      throw new Error();
-    }
-
-    const landValues = await LandValue.findAll({
-      attributes: ["pnu", "public_price", "base_year", "base_month"],
-      where: {
-        pnu: { [sequelize.Op.startsWith]: areaCode },
-        base_year: baseYear,
-        base_month: baseMonth,
-      },
-      limit: 20,
-      order: [
-        [sequelize.cast(sequelize.col("public_price"), "BIGINT"), "DESC"],
-      ],
-      raw: true,
-    });
+    const landValues = await getValuableLands(code, year, month);
 
     const _landValues = landValues.map((landValue) => {
-      const { pnu, public_price, base_year, base_month } = landValue;
+      const { pnu, publicPrice, baseYear, baseMonth } = landValue;
 
       return {
         pnu,
-        public_price,
-        pub_date: `${base_year}년 ${base_month}월`,
+        publicPrice,
+        pub_date: `${baseYear}년 ${baseMonth}월`,
       };
     });
 
