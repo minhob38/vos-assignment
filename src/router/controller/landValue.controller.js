@@ -23,7 +23,7 @@ const getLandValue = async (ctx, next) => {
     ctx.type = "application/json";
     ctx.body = _landValues;
   } catch (err) {
-    console.log(`GET: /api/land-value/pnu: ${err}`);
+    console.log(`GET: /api/land-value/query: ${err}`);
     ctx.app.emit("error", createError(500, "Internal Server Error"), ctx);
   }
 };

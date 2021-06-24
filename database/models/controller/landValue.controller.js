@@ -22,6 +22,7 @@ const getValuableLands = async (areaCode, baseYear, baseMonth) => {
     limit: 20,
     order: [
       [sequelize.cast(sequelize.col("public_price"), "BIGINT"), "DESC"],
+      [sequelize.cast(sequelize.col("pnu"), "BIGINT"), "ASC"],
     ],
     raw: true,
   });
