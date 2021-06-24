@@ -1,5 +1,5 @@
 const Router = require("koa-router");
-const landValue = require("./landValue/landValue");
+const landValue = require("./landValue");
 
 const api = new Router();
 

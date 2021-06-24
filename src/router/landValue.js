@@ -1,5 +1,5 @@
 const Router = require("koa-router");
-const landValueCtrl = require("./landValue.controller");
+const landValueCtrl = require("./controller/landValue.controller");
 
 const landValue = new Router();
 

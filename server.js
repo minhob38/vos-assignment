@@ -3,7 +3,7 @@ const Router = require("koa-router");
 const logger = require("koa-logger");
 require("dotenv").config();
 
-const api = require("./src/api");
+const api = require("./src/router/api");
 const db = require("./database/models");
 
 const app = new Koa();
