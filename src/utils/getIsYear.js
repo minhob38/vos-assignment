@@ -1,5 +1,5 @@
 const getIsYear = (year) => {
-  const reg = /^[12]\d{3}/;
+  const reg = /(19|20)\d{2}/;
   const isYear = reg.test(year) && year.length === 4;
 
   return isYear;

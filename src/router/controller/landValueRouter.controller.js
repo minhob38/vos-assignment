@@ -14,10 +14,10 @@ const getLandValue = async (ctx, next) => {
       ctx.throw(400, "Invalid Request");
     }
 
-    const landValues = await getValuableLands(code, year, month);
+    const rawLandValues = await getValuableLands(code, year, month);
 
-    const _landValues = landValues.map((landValue) => {
-      const { pnu, publicPrice, baseYear, baseMonth } = landValue;
+    const landValues = rawLandValues.map((rawLandValue) => {
+      const { pnu, publicPrice, baseYear, baseMonth } = rawLandValue;
 
       return {
         pnu,
@@ -28,7 +28,7 @@ const getLandValue = async (ctx, next) => {
 
     ctx.status = 200;
     ctx.type = "application/json";
-    ctx.body = _landValues;
+    ctx.body = landValues;
   } catch (err) {
     ctx.app.emit("error", createError(err.status, err.message), ctx);
   }

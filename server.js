@@ -1,6 +1,7 @@
 const Koa = require("koa");
 const Router = require("koa-router");
 const logger = require("koa-logger");
+const cors = require("@koa/cors");
 const http = require("http");
 require("dotenv").config();
 
@@ -15,6 +16,8 @@ const server = http.createServer(app.callback());
 const port = process.env.PORT || 3000;
 
 app.use(logger());
+
+app.use(cors());
 
 router.use(apiRouter.routes());
 app.use(router.routes());
