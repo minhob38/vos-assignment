@@ -4,9 +4,9 @@ const iconv = require("iconv-lite");
 const es = require("event-stream");
 const { LandValue } = require("../../database/models");
 
-const createDbFromCsv = async (csvPath) => {
+const createLandValueDbFromCsv = async (csvPath) => {
   let tables = [];
-
+  let i = 0;
   const stream = fs.createReadStream(csvPath)
     .pipe(iconv.decodeStream("euc-kr"))
     .pipe(csv({}))
@@ -19,6 +19,7 @@ const createDbFromCsv = async (csvPath) => {
       });
 
       if (tables.length >= 100000) {
+        console.log(++i);
         stream.pause();
 
         (async () => {
@@ -32,6 +33,7 @@ const createDbFromCsv = async (csvPath) => {
 
   return new Promise((resolve, reject) => {
     stream.on("end", async () => {
+      console.log("end");
       await LandValue.bulkCreate(tables);
       resolve();
     });
@@ -40,4 +42,4 @@ const createDbFromCsv = async (csvPath) => {
   });
 };
 
-module.exports = createDbFromCsv;
+module.exports = createLandValueDbFromCsv;
