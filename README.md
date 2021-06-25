@@ -61,11 +61,12 @@ koa는 서버 애플리케이션 프레임워크로 express팀이 만든 프레�
 <br>
 
 ### • postgreSQL
+오픈소스 관계형 데이터베이스로 대용량 Transaction 처리, GIS에 유용한 특징을 가지고 있습니다. NoSQL과 달리, 스키마에 따라 엄격하게 테이블이 관리되기에, 공시지가 같은 신뢰성이 보장되어야 하는 데이터를 저장하기에 좋습니다.
 
 <br>
 
 ### • sequelize
-sequelize는 nodejs ORM(Object Relational Mapping)으로, database를 javascript 객체처럼 다룰 수 있게 해줍니다. 또한 sequelize가 javascript query문을 작성하면, 아래처럼 SQL문으로 변환하여 database를 다루기 때문에 SQL 코드를 작성하지 않아도 됩니다. 이처럼 **sequelize가 javascript 애플리케이션 개발에 집중해줄 수 있도록 해주기 때문에, sequelize를 사용하였습니다.**  
+sequelize는 nodejs ORM(Object Relational Mapping)으로, database를 javascript 객체처럼 다룰 수 있게 해줍니다. 또한 sequelize가 javascript query문을 작성하면, 아래처럼 SQL문으로 변환하여 database를 다루기 때문에 SQL 코드를 작성하지 않아도 됩니다. 이처럼 **sequelize가 javascript 애플리케이션 개발에 집중해 줄 수 있도록 해주기 때문에, sequelize를 사용하였습니다.**  
 
 ||Sequelize|SQL|
 |:-|:-|:-|
@@ -77,7 +78,7 @@ sequelize는 nodejs ORM(Object Relational Mapping)으로, database를 javascript
 <br>
 
 ### • csv-parser
-csv-parser는 stream 기반으로 csv를 읽기에 파일 크기와 관계 없이 parsing 할 수 있습니다. 또한, 행별로 읽은 결과를 csv 헤더가 key인 객체로 반환하여 결과를 다루기 쉽습니다. 이처럼 csv를 다루기에 좋은 라이브러리이기에, **서울특별시 개별공시지가정보 csv를 parsing 하기 위해서 csv-parser를 사용하였습니다.**
+csv-parser는 stream 기반으로 csv를 읽기에 파일 크기와 관계없이 parsing 할 수 있습니다. 또한, 행별로 읽은 결과를 csv 헤더가 key인 객체로 반환하여 결과를 다루기 쉽습니다. 이처럼 csv를 다루기에 좋은 라이브러리이기에, **서울특별시 개별공시지가정보 csv를 parsing 하기 위해서 csv-parser를 사용하였습니다.**
 
 <br>
 
@@ -92,7 +93,7 @@ http 요청을 테스트 하기 위해, 서버를 열고 요청을 보낸 후 �
 <br>
 
 ### • mocha / chai
-Mocha는 nodejs에서 실행되는 javascript test framework이며 chai는 함께 사용되는 assertion library입니다. **mocha와 chai를 통해, util 함수가 요구사항에 따라 작동하는지 테스트 할 수 있었습니다.**
+mocha는 nodejs에서 실행되는 javascript test framework이며 chai는 함께 사용되는 assertion library입니다. **mocha와 chai를 통해, util 함수가 요구사항에 따라 작동하는지 테스트 할 수 있었습니다.**
 
 <br>
 
