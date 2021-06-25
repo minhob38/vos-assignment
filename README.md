@@ -27,21 +27,25 @@ npm test
 ## 👷🏻 Stack
 koa (express 차이)  
 ### postgreSQL (MongoDB 차이)
-**sequelize**  
-sequelize는 nodejs ORM(Object Relational Mapping)으로, database를 javascript 객체처럼 다룰 수 있게 해줍니다. 또한 sequelize가 javascript query문을 작성하면, SQL문으로 변환하여 database를 다루기 때문에 SQL 코드를 신경쓰지 않고 javascript 애플리케이션 개발에 집중해줄 수 있도록 해줍니다. (하지만,? 애플리케이션이 복잡해지고 )  
+### sequelize
+sequelize는 nodejs ORM(Object Relational Mapping)으로, database를 javascript 객체처럼 다룰 수 있게 해줍니다. 또한 sequelize가 javascript query문을 작성하면, SQL문으로 변환하여 database를 다루기 때문에 SQL 코드를 작성하지 않아도 됩니다. 이처럼 **sequelize가 javascript 애플리케이션 개발에 집중해줄 수 있도록 해주기 때문에, sequelize를 사용하였습니다.**  
 아래는 sequelize query와 SQL query의 차이입니다.
 ||Sequelize|SQL|
 |:-|:-|:-|
-|생성|`User.create({ name: "doe", age: 20 })`|`INSERT INTO users (name, age) VALUES("doe", 20)`|
-|조회|`User.findAll({ where: { name: "doe" } })`|`SELECT * FROM users WHERE name = "doe"`|
-|수정|`User.update({ age: 30, where: { name: "doe" } })`|`SELECT users SET age = 30 WHERE name = "doe"`|
-|삭제|`User.destroy({ where: { name: "doe" } })`|`DELETE FROM users WHERE name = "doe"`|
+|**생성**|`User.create({ name: "doe", age: 20 })`|`INSERT INTO users (name, age) VALUES("doe", 20)`|
+|**조회**|`User.findAll({ where: { name: "doe" } })`|`SELECT * FROM users WHERE name = "doe"`|
+|**수정**|`User.update({ age: 30, where: { name: "doe" } })`|`SELECT users SET age = 30 WHERE name = "doe"`|
+|**삭제**|`User.destroy({ where: { name: "doe" } })`|`DELETE FROM users WHERE name = "doe"`|
 
-csv-parser  
-event-stream  
-super-test  
-chai  
-google clould sql  
+### csv-parser
+csv-parser는 stream 기반으로 csv를 읽기에 파일 크기와 관계 없이 parsing 할 수 있습니다. 또한, 행별로 읽은 결과를 csv 헤더가 key인 javascript 객체로 반환하여 결과를 다루기 쉽습니다. 이처럼 csv를 다루기에 좋은 라이브러리이기에, **서울특별시 개별공시지가정보 csv를 parsing 하기 위해서 csv-parser를 사용하였습니다.**
+
+### event-stream
+서울특별시 개별공시지가정보는 29,397,090개로 nodejs에서 이 데이터를 저장한다면 메모리부족으로 에러가 발생하기에, 한번에 이 데이터들을 Database에 삽입하는 것은 불가능합니다. 따라서 stream을 끊어서 Database에 저장할 필요가 있습니다. 하지만 stream에 대한 이벤트는 비동기로 발생하기에 이를 동기코드처럼 다루기에는 어려움이 있습니다. event-stream은 stream을 메모리가 아닌 시간에 대한 배열처럼 다루어, stream을 중간에 멈추고 필요한 작업을 한뒤 다시 stream을 재개할 수 있게 해줍니다. **이처럼 stream 중간작업 제어를 위해 event-stream을 사용하였습니다.**
+
+### super-test
+### chai
+### google clould sql
 
 ## Lesson
 ### Indexing에 의한 Database 조회 속도 차이
@@ -50,6 +54,5 @@ Database에 인덱싱이 있을 때와 없을 때의 조회 속도를 비교해�
 |:-|:-|
 |6498ms|2376ms|
 
-
-
 ### 대용량 파일 처리
+stream (정지) -> db 저장 -> stream (재개)
