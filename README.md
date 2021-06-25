@@ -93,18 +93,19 @@ http 요청을 테스트 하기 위해, 서버를 열고 요청을 보낸 후 �
 <br>
 
 ### • mocha / chai
-mocha는 nodejs에서 실행되는 javascript test framework이며 chai는 함께 사용되는 assertion library입니다. **mocha와 chai를 통해, util 함수가 요구사항에 따라 작동하는지 테스트 할 수 있었습니다.**
+mocha는 nodejs에서 실행되는 javascript test framework이며, chai는 함께 사용되는 assertion library입니다. **mocha와 chai를 통해, util 함수가 요구사항에 따라 작동하는지 테스트 할 수 있었습니다.**
 
 <br>
 
 ### • google clould sql
-작업 컴퓨터가 아닌 다른 컴퓨터에서도 편리하게 Database에 접근하게 하기 위해서는, Database를 로컬환경이 아닌 클라우드 환경에 올릴 필요가 있습니다. google clould sql은 MySQL, PostgreSQL Database를 클라우드 환경에서 관리해줍니다. **이러한 클라우드를 통해 환경에 관계 없이 database에 접근할 수 있도록 하였습니다.**
+작업 컴퓨터가 아닌 다른 컴퓨터에서도 편리하게 Database에 접근하기 위해서는, Database를 로컬환경이 아닌 클라우드 환경에 올릴 필요가 있습니다. google clould sql은 MySQL, PostgreSQL Database를 클라우드 환경에서 관리해줍니다. **이러한 클라우드를 통해 환경에 관계 없이 database에 접근할 수 있도록 하였습니다.**
 
 <br>
 
 ## 고찰
-### • Indexing에 의한 Database 조회 속도 차이
-서울특별시 공시지가 database의 row는 29,397,090개이기 때문에, 데이터 조회가 오래 걸릴 수 있습니다. 따라서 주요 검색 column으로 미리 인덱싱하여 조회 속도를 개선시킬 필요가 있습니다. **본 과제에서는 시군구코드, 기준연도, 기준월로 공시지가를 조회하기 때문에 pnu, base_year, base_month로 인덱싱하였습니다.**  
+### • 인덱싱 의한 Database 조회 속도 차이
+서울특별시 공시지가 database의 row는 29,397,090개이기 때문에, 데이터 조회가 오래 걸릴 수 있습니다. 따라서 주요 검색 column으로 미리 인덱싱하여 조회 속도를 개선시킬 필요가 있습니다. **본 과제에서는 시군구코드, 기준연도, 기준월로 공시지가를 조회하기 때문에 pnu, base_year, base_month로 인덱싱하였습니다.**
+
 이러한 인덱싱이 Database에 있을 때와 없을 때의 조회 속도를 비교해보았습니다. 결과는 아래와 같으며, **인덱싱 있는 DB의 조회시간은 없는 DB의 조회시간에 비해 37%의 시간이 소요되는 것을 확인할 수 있었습니다.**
 
 **- 인덱싱 미적용 DB**  
