@@ -1,6 +1,6 @@
 /**
  * @function it returns boolean whether year is valid on not
- * @description area code should be 1900 ~ 2099 or specific year
+ * @description year should be 1900 ~ 2099 or specific year
  * @param {String} year - year
  * @param {String} constraint - specific year
  * @return {Boolean} isValidYear - year's validation
