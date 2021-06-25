@@ -1,8 +1,8 @@
 const createError = require("http-errors");
 const { getValuableLands } = require("../../../database/models/controller/landValue.controller");
-const getIsAreaCode = require("../../utils/getIsAreaCode");
-const getIsYear = require("../../utils/getIsYear");
-const getIsMonth = require("../../utils/getIsMonth");
+const getIsValidAreaCode = require("../../utils/getIsValidAreaCode");
+const getIsValidYear = require("../../utils/getIsValidYear");
+const getIsValidMonth = require("../../utils/getIsValidMonth");
 
 const getLandValue = async (ctx, next) => {
   try {
@@ -10,7 +10,7 @@ const getLandValue = async (ctx, next) => {
     const year = ctx.query["base-year"];
     const month = ctx.query["base-month"];
 
-    if (!getIsAreaCode(code) || !getIsYear(year) || !getIsMonth(month)) {
+    if (!getIsValidAreaCode(code) || !getIsValidYear(year, "2020") || !getIsValidMonth(month, "01")) {
       ctx.throw(400, "Invalid Request");
     }
 

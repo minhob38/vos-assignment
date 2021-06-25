@@ -1,3 +1,9 @@
+/**
+ * @function
+ * @description it parses csv data and seeds it into database
+ * @params {String} csvPath - csv file's path
+ */
+
 const fs = require("fs");
 const csv = require("csv-parser");
 const iconv = require("iconv-lite");
@@ -6,7 +12,7 @@ const { LandValue } = require("../../database/models");
 
 const createLandValueDbFromCsv = async (csvPath) => {
   let tables = [];
-  let i = 0;
+
   const stream = fs.createReadStream(csvPath)
     .pipe(iconv.decodeStream("euc-kr"))
     .pipe(csv({}))
@@ -19,7 +25,6 @@ const createLandValueDbFromCsv = async (csvPath) => {
       });
 
       if (tables.length >= 100000) {
-        console.log(++i);
         stream.pause();
 
         (async () => {
@@ -33,7 +38,6 @@ const createLandValueDbFromCsv = async (csvPath) => {
 
   return new Promise((resolve, reject) => {
     stream.on("end", async () => {
-      console.log("end");
       await LandValue.bulkCreate(tables);
       resolve();
     });
